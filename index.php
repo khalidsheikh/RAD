@@ -1,57 +1,74 @@
 <?php
-include ("includes/conexion.php");
+	session_start();
+	if(isset($_SESSION['username']))
+	{
+		header('Location: dashboard.php');
+	}
 ?>
-<html>
-    <head>
-        <title>Project T</title>
-		<link type="text/css" href="style.css" rel="stylesheet" />
-    </head>
-<body>
-<div class="left" id="header">
-	<div class="left">
-		<img src ="../img/logo.png" style="border:1px solid black;"/>
-	</div>
-</div>
-
-<div class="clear"></div>
-
-<div id="body">
-	<form action="teachers.php" method="post" name="form" id="form">
-		<div style="margin-top:35px;">
-			<div class="left">
-				<span>Course:</span>
-				<select id="course" name="course">
-						<?php 
-			$course=mysql_query("SELECT id_course,name_course FROM course",$conexion);
-			while($row = mysql_fetch_array($course))
-			{
-				echo'<option value="'.$row['id_course'].'">'.$row['name_course'].'</option>';
-			}
-						 ?>
-				</select>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>MAJOR</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" >
+		<link rel="stylesheet" href="css/app.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.php">T Project</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					
+				</div><!--/.navbar-collapse -->
 			</div>
-			<div class="left">
-				<span>Subject</span>	
-				<select id="subject" name="subject">
-						<?php 
-			$subject=mysql_query("SELECT id_subject,name_subject FROM subject",$conexion);
-			while($row = mysql_fetch_array($subject))
-			{
-				echo'<option value="'.$row['id_subject'].'">'.$row['name_subject'].'</option>';
-			}
-						 ?>
-				</select>
-			</div>
+		</nav>
 
-			<div class="clear"></div>
-			<div style="margin-top:15px;" class="right">			
-				<a href="#" onclick="form.submit();">
-					<span class="btn">GO</span>	
-				</a>
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div class="jumbotron">
+			<div class="container">
+				<h1>MAJOR KEY THETA</h1>
+				<p>This is a website that lets Students book appoitments with teachers for Theta sessions and also allows Teachers to make available slots</p>
 			</div>
+			 
 		</div>
-	</form>
-</div>
 
-</body>
+		<div class="container">
+		<!-- Example row of columns -->
+			<div class="row">
+				<div class="col-md-4">
+					<h2>Student Signup</h2>
+					<p>Student can sign up by lciking the signup button below</p>
+					<p><a class="btn btn-primary" href="register.php?type=student" role="button">Student Signup &raquo;</a></p>
+				</div>
+				<div class="col-md-4">
+					<h2>Teacher Signup</h2>
+					<p>Teacher can sign up by lciking the signup button below</p>
+					<p><a class="btn btn-primary" href="register.php?type=teacher" role="button">Teacher Signup &raquo;</a></p>
+				</div>
+				<div class="col-md-4">
+					<h2>Login</h2>
+					<p> Students and Tecaher can login using their username and password by clicking login button below</p>
+					<p><a class="btn btn-primary" href="login.php" role="button">Login &raquo;</a></p>
+				</div>
+			</div>
+
+			<hr>
+			<footer>
+				<p>&copy; 2015 Company, Inc.</p>
+			</footer>
+		</div> <!-- /container -->
+	</body>
 </html>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
